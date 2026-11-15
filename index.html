@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ec">
+  <meta name="description" content="Ontdek Oriental Gallery, een juwelenwinkel in hartje Gent. Bezoek ons in de Sint-Pietersnieuwstraat 2.">
+  <title>Oriental Gallery | Juwelen in Gent</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f3ec;
+      --white: #fffdfa;
+      --ink: #302b26;
+      --muted: #82796e;
+      --gold: #a58352;
+      --line: #e5ded4;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { width: 100%; display: block; object-fit: cover; }
+
+    .container {
+      width: min(1240px, 90%);
+      margin: auto;
+    }
+
+    .announcement {
+      background: var(--ink);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,243,236,.97);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      height: 91px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-family: "Italiana", serif;
+      font-size: 30px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo small {
+      display: block;
+      font-family: "DM Sans", sans-serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-align: center;
+      margin-top: 4px;
+      color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    nav a {
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: color .2s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    .nav-cta {
+      border: 1px solid var(--ink);
+      padding: 14px 22px;
+    }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 48% 52%;
+      min-height: 660px;
+    }
+
+    .hero-content {
+      padding: 90px 9% 90px max(7%, calc((100vw - 1240px)/2));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    h1, h2, h3 {
+      font-family: "Italiana", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: clamp(60px, 6vw, 105px);
+      line-height: 1.03;
+      margin: 28px 0;
+      letter-spacing: -2px;
+    }
+
+    h1 em {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .hero-content p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 2;
+      max-width: 430px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 15px 28px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: .25s;
+      cursor: pointer;
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn-dark:hover { background: var(--gold); }
+
+    .btn-outline {
+      border: 1px solid var(--ink);
+    }
+
+    .btn-outline:hover {
+      background: var(--ink);
+      color: white;
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+
+    .hero-image img {
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg,rgba(0,0,0,.25),transparent 45%);
+    }
+
+    .hero-label {
+      position: absolute;
+      z-index: 2;
+      bottom: 35px;
+      right: 40px;
+      color: white;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .intro-strip {
+      padding: 27px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+      text-align: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    section { scroll-margin-top: 110px; }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(43px, 5vw, 70px);
+      margin: 15px 0;
+    }
+
+    .section-head p {
+      max-width: 540px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .collections {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .collection-image {
+      height: 410px;
+      overflow: hidden;
+      background: #e7dfd4;
+    }
+
+    .collection-image img {
+      height: 100%;
+      transition: transform .6s ease;
+    }
+
+    .collection:hover img { transform: scale(1.05); }
+
+    .collection h3 {
+      font-size: 32px;
+      margin: 20px 0 8px;
+    }
+
+    .collection p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #eae3d8;
+    }
+
+    .about-image { min-height: 600px; }
+
+    .about-image img { height: 100%; }
+
+    .about-content {
+      padding: 90px 12%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about h2 {
+      font-size: clamp(48px, 5vw, 75px);
+      line-height: 1.1;
+      margin: 25px 0;
+    }
+
+    .about p {
+      font-size: 14px;
+      line-height: 2.1;
+      color: #6e665c;
+      max-width: 490px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .gallery img {
+      aspect-ratio: 3 / 4;
+      transition: opacity .25s;
+    }
+
+    .gallery a:hover img { opacity: .8; }
+
+    .gallery-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .quote {
+      background: #302b26;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .quote p {
+      font-family: "Italiana", serif;
+      font-size: clamp(35px, 4.5vw, 65px);
+      max-width: 850px;
+      margin: 20px auto;
+      line-height: 1.3;
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .visit h2 {
+      font-size: 65px;
+      margin: 20px 0 30px;
+    }
+
+    .info-block {
+      border-top: 1px solid var(--line);
+      padding: 24px 0;
+    }
+
+    .info-block h4 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 12px;
+    }
+
+    .info-block p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .hours {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .hours td {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hours td:last-child { text-align: right; }
+
+    .map {
+      height: 380px;
+      background: #e9e2d8;
+      margin-top: 70px;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 60px;
+    }
+
+    footer .logo { font-size: 36px; }
+
+    footer p {
+      font-size: 13px;
+      line-height: 2;
+      color: #c7beb4;
+      max-width: 340px;
+    }
+
+    footer h4 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c3a477;
+      margin: 0 0 24px;
+    }
+
+    footer a {
+      display: block;
+      color: #d6cec4;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    footer a:hover { color: white; }
+
+    .footer-bottom {
+      border-top: 1px solid #514b44;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: #a79e93;
+    }
+
+    .footer-bottom a {
+      display: inline;
+      font-size: inherit;
+    }
+
+    @media(max-width: 900px) {
+      .navbar { height: 75px; }
+      .logo { font-size: 25px; }
+
+      .menu-btn { display: block; }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 30px 5%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      nav.open { display: flex; }
+
+      .nav-cta { text-align: center; }
+
+      .hero { grid-template-columns: 1fr; }
+
+      .hero-content { padding: 85px 7%; }
+
+      .hero-image { min-height: 460px; }
+
+      .collections { gap: 14px; }
+
+      .collection-image { height: 310px; }
+
+      .about-content { padding: 60px 8%; }
+
+      .about-image { min-height: 450px; }
+
+      .visit-grid { gap: 30px; }
+    }
+
+    @media(max-width: 600px) {
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .hero-content { padding: 65px 6%; }
+
+      h1 { font-size: 65px; }
+
+      .hero-image { min-height: 390px; }
+
+      .hero-label { right: 20px; }
+
+      .intro-strip {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+      }
+
+      .section { padding: 75px 0; }
+
+      .collections { grid-template-columns: 1fr; gap: 38px; }
+
+      .collection-image { height: 420px; }
+
+      .about { grid-template-columns: 1fr; }
+
+      .about-image { min-height: 360px; }
+
+      .about-content { padding: 70px 6%; }
+
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+
+      .visit-grid { grid-template-columns: 1fr; gap: 45px; }
+
+      .visit h2 { font-size: 55px; }
+
+      .map { height: 300px; margin-top: 45px; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    Discover Oriental Gallery · Sint-Pietersnieuwstraat 2, Gent
+  </div>
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo" aria-label="Oriental Gallery home">
+        Oriental Gallery
+        <small>GENT · BELGIUM</small>
+      </a>
+
+      <button class="menu-btn" id="menuBtn"
+        aria-label="Open menu" aria-expanded="false"
+        aria-controls="navigation">☰</button>
+
+      <nav id="navigation">
+        <a href="#collectie">Collectie</a>
+        <a href="#over-ons">Ons verhaal</a>
+        <a href="#galerij">Galerij</a>
+        <a href="#bezoek">Contact</a>
+        <a href="#bezoek" class="nav-cta">Bezoek onze winkel</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">Jewellery boutique · Ghent</span>
+
+        <h1>Beauty in<br>every <em>detail.</em></h1>
+
+        <p>
+          Ontdek de wereld van Oriental Gallery.
+          Een bijzondere plek in het hart van Gent,
+          waar juwelen, stijl en persoonlijke expressie
+          samenkomen.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-dark" href="#collectie">
+            Ontdek onze collectie
+          </a>
+          <a class="btn btn-outline" href="#bezoek">
+            Bezoek ons
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1400&q=85"
+          alt="Elegante juwelen"
+          fetchpriority="high">
+        <span class="hero-label">Oriental Gallery · Gent</span>
+      </div>
+    </section>
+
+    <div class="intro-strip">
+      Jewellery · Personal style · Timeless beauty
+    </div>
+
+    <section class="section" id="collectie">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">The collection</span>
+          <h2>Ontdek jouw stijl</h2>
+          <p>
+            Van subtiele details tot opvallende accenten.
+            Laat je inspireren en ontdek wat bij jou past.
+          </p>
+        </div>
+
+        <div class="collections">
+          <article class="collection">
+            <div class="collection-image">
+              <img
+                src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=850&q=85"
+                alt="Halskettingen"
+                loading="lazy">
+            </div>
+            <h3>Halskettingen</h3>
+            <p>Een bijzonder accent voor elke uitstraling.</p>
+          </article>
+
+          <article class="collection">
+            <div class="collection-image">
+              <img
+                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=850&q=85"
+                alt="Oorbellen en sieraden"
+                loading="lazy">
+            </div>
+            <h3>Oorbellen</h3>
+            <p>Details die jouw persoonlijke stijl versterken.</p>
+          </article>
+
+          <article class="collection">
+            <div class="collection-image">
+              <img
+                src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=850&q=85"
+                alt="Ringen"
+                loading="lazy">
+            </div>
+            <h3>Ringen</h3>
+            <p>Een klein detail met een grote uitstraling.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="over-ons">
+      <div class="about-image">
+        <img
+          src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=85"
+          alt="Juwelen in een elegante presentatie"
+          loading="lazy">
+      </div>
+
+      <div class="about-content">
+        <span class="eyebrow">Our story</span>
+        <h2>Meer dan<br>alleen juwelen.</h2>
+
+        <p>
+          In het centrum van Gent vind je Oriental Gallery.
+          Een winkel voor wie houdt van juwelen met karakter
+          en een persoonlijke uitstraling.
+        </p>
+
+        <p>
+          Of je nu iets zoekt voor jezelf, een bijzonder
+          geschenk wilt vinden of gewoon inspiratie wilt
+          opdoen: je bent welkom om onze winkel te ontdekken.
+        </p>
+
+        <div class="buttons">
+          <a href="#bezoek" class="btn btn-dark">
+            Kom langs in Gent
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="galerij">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Follow our world</span>
+          <h2>Een blik op onze wereld</h2>
+          <p>
+            Ontdek meer van Oriental Gallery en volg ons
+            voor inspiratie en updates.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <a href="https://www.instagram.com/oriental_gallery/"
+            target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=650&q=85"
+              alt="Juwelen detail" loading="lazy">
+          </a>
+
+          <a href="https://www.instagram.com/oriental_gallery/"
+            target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=650&q=85"
+              alt="Halskettingen" loading="lazy">
+          </a>
+
+          <a href="https://www.instagram.com/oriental_gallery/"
+            target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=650&q=85"
+              alt="Sieraden" loading="lazy">
+          </a>
+
+          <a href="https://www.instagram.com/oriental_gallery/"
+            target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=650&q=85"
+              alt="Ring" loading="lazy">
+          </a>
+        </div>
+
+        <div class="gallery-cta">
+          <a class="btn btn-outline"
+            href="https://www.instagram.com/oriental_gallery/"
+            target="_blank" rel="noopener noreferrer">
+            Volg ons op Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <span class="eyebrow">Oriental Gallery</span>
+      <p>“The smallest details make the biggest difference.”</p>
+      <span style="font-size:11px;letter-spacing:3px;color:#c3a477">
+        GENT · BELGIUM
+      </span>
+    </section>
+
+    <section class="section visit" id="bezoek">
+      <div class="container">
+        <div class="visit-grid">
+          <div>
+            <span class="eyebrow">Visit our boutique</span>
+            <h2>Kom langs.</h2>
+
+            <div class="info-block">
+              <h4>Adres</h4>
+              <p>
+                Sint-Pietersnieuwstraat 2<br>
+                9000 Gent, België
+              </p>
+            </div>
+
+            <div class="info-block">
+              <h4>Contact</h4>
+              <p>
+                <a href="tel:+32486515633">0486 51 56 33</a>
+              </p>
+            </div>
+
+            <div class="info-block">
+              <h4>Instagram</h4>
+              <p>
+                <a href="https://www.instagram.com/oriental_gallery/"
+                   target="_blank" rel="noopener noreferrer">
+                  @oriental_gallery
+                </a>
+              </p>
+            </div>
+
+            <div class="buttons">
+              <a class="btn btn-dark"
+                href="https://www.google.com/maps/search/?api=1&query=Sint-Pietersnieuwstraat+2+9000+Gent"
+                target="_blank" rel="noopener noreferrer">
+                Routebeschrijving
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <span class="eyebrow">Opening hours</span>
+            <h2>Openingsuren</h2>
+
+            <table class="hours">
+              <tr><td>Maandag</td><td>14:00 – 18:30</td></tr>
+              <tr><td>Dinsdag</td><td>11:00 – 18:30</td></tr>
+              <tr><td>Woensdag</td><td>11:00 – 18:30</td></tr>
+              <tr><td>Donderdag</td><td>11:00 – 18:30</td></tr>
+              <tr><td>Vrijdag</td><td>11:00 – 18:30</td></tr>
+              <tr><td>Zaterdag</td><td>11:00 – 18:30</td></tr>
+              <tr><td>Zondag</td><td>Gesloten</td></tr>
+            </table>
+
+            <p style="color:var(--muted);font-size:12px;line-height:1.8;margin-top:25px">
+              Openingsuren kunnen afwijken op feestdagen.
+              Neem bij twijfel contact op met de winkel.
+            </p>
+          </div>
+        </div>
+
+        <div class="map">
+          <iframe
+            title="Locatie Oriental Gallery Gent"
+            src="https://www.google.com/maps?q=Sint-Pietersnieuwstraat%202%2C%209000%20Gent%2C%20Belgium&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo">
+            Oriental Gallery
+            <small style="text-align:left">GENT · BELGIUM</small>
+          </div>
+
+          <p>
+            Ontdek juwelen en persoonlijke stijl
+            in het hart van Gent.
+          </p>
+        </div>
+
+        <div>
+          <h4>Ontdek</h4>
+          <a href="#collectie">Collectie</a>
+          <a href="#over-ons">Ons verhaal</a>
+          <a href="#galerij">Galerij</a>
+          <a href="#bezoek">Contact</a>
+        </div>
+
+        <div>
+          <h4>Bezoek ons</h4>
+          <p>Sint-Pietersnieuwstraat 2<br>9000 Gent</p>
+          <a href="tel:+32486515633">0486 51 56 33</a>
+          <a href="https://www.instagram.com/oriental_gallery/"
+             target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Oriental Gallery. Alle rechten voorbehouden.</span>
+        <span>Website by
+          <a href="https://upsideagency.be/"
+             target="_blank" rel="noopener noreferrer">
+            Upside Agency
+          </a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navigation = document.getElementById("navigation");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.setAttribute("aria-label", isOpen ? "Sluit menu" : "Open menu");
+      menuBtn.textContent = isOpen ? "×" : "☰";
+    });
+
+    navigation.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open menu");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
