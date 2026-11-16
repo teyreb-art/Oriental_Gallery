@@ -554,6 +554,21 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition: none !important; }
     }
+
+    .product-filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:35px}
+    .product-filter{background:transparent;border:1px solid var(--line);padding:11px 17px;color:var(--ink);cursor:pointer}
+    .product-filter.active,.product-filter:hover{background:var(--ink);color:white;border-color:var(--ink)}
+    .product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 18px}
+    .product-card{border:0;background:none;padding:0;text-align:left;cursor:pointer;color:inherit}
+    .product-card img{aspect-ratio:1/1;object-fit:cover;background:#eee9e0}
+    .product-card h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;margin:13px 0 5px}
+    .product-card p{font-size:12px;color:var(--muted);margin:0}
+    .product-dialog{border:0;padding:20px;background:var(--white);color:var(--ink);max-width:min(92vw,700px);max-height:90vh;overflow:auto}
+    .product-dialog::backdrop{background:rgba(20,17,15,.75)}
+    .product-dialog img{max-height:65vh;object-fit:contain;background:#eee9e0}
+    .dialog-close{float:right;border:0;background:transparent;font-size:26px;cursor:pointer;margin-bottom:8px}
+    @media(max-width:900px){.product-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.product-grid{grid-template-columns:repeat(2,1fr);gap:18px 12px}}
   </style>
 </head>
 
@@ -576,6 +591,7 @@
 
       <nav id="navigation">
         <a href="#collectie">Collectie</a>
+        <a href="#producten">Juwelen</a>
         <a href="#over-ons">Ons verhaal</a>
         <a href="#galerij">Galerij</a>
         <a href="#bezoek">Contact</a>
@@ -610,7 +626,7 @@
 
       <div class="hero-image">
         <img
-          src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1400&q=85"
+          src="images/hanger-matgoud.webp"
           alt="Elegante juwelen"
           fetchpriority="high">
         <span class="hero-label">Oriental Gallery · Gent</span>
@@ -636,7 +652,7 @@
           <article class="collection">
             <div class="collection-image">
               <img
-                src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=850&q=85"
+                src="images/hanger-matgoud.webp"
                 alt="Halskettingen"
                 loading="lazy">
             </div>
@@ -647,7 +663,7 @@
           <article class="collection">
             <div class="collection-image">
               <img
-                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=850&q=85"
+                src="images/oorstekers-goud.webp"
                 alt="Oorbellen en sieraden"
                 loading="lazy">
             </div>
@@ -658,7 +674,7 @@
           <article class="collection">
             <div class="collection-image">
               <img
-                src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=850&q=85"
+                src="images/ring-zwarte-edelsteen.webp"
                 alt="Ringen"
                 loading="lazy">
             </div>
@@ -669,10 +685,20 @@
       </div>
     </section>
 
+
+    <section class="section" id="producten">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Our jewellery</span><h2>Onze juwelen</h2><p>Ontdek een selectie uit onze collectie. Voor prijzen en beschikbaarheid kan je contact opnemen met de winkel.</p></div>
+        <div class="product-filters" id="productFilters" aria-label="Filter juwelen"></div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+    <dialog class="product-dialog" id="productDialog" aria-label="Productdetails"><button class="dialog-close" id="closeProduct" aria-label="Sluiten">×</button><img id="detailImage" alt=""><h3 id="detailTitle"></h3><p>Prijs en beschikbaarheid op aanvraag</p><a class="btn btn-dark" href="tel:+32486515633">Contacteer de winkel</a></dialog>
+
     <section class="about" id="over-ons">
       <div class="about-image">
         <img
-          src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=85"
+          src="images/cuffarmband-goud.webp"
           alt="Juwelen in een elegante presentatie"
           loading="lazy">
       </div>
@@ -716,28 +742,28 @@
           <a href="https://www.instagram.com/oriental_gallery/"
             target="_blank" rel="noopener noreferrer">
             <img
-              src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=650&q=85"
+              src="images/ring-zilver-goud.webp"
               alt="Juwelen detail" loading="lazy">
           </a>
 
           <a href="https://www.instagram.com/oriental_gallery/"
             target="_blank" rel="noopener noreferrer">
             <img
-              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=650&q=85"
+              src="images/cuffarmband-goud.webp"
               alt="Halskettingen" loading="lazy">
           </a>
 
           <a href="https://www.instagram.com/oriental_gallery/"
             target="_blank" rel="noopener noreferrer">
             <img
-              src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=650&q=85"
+              src="images/oorbellen-zwarte-edelstenen.webp"
               alt="Sieraden" loading="lazy">
           </a>
 
           <a href="https://www.instagram.com/oriental_gallery/"
             target="_blank" rel="noopener noreferrer">
             <img
-              src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=650&q=85"
+              src="images/ring-verweven.webp"
               alt="Ring" loading="lazy">
           </a>
         </div>
@@ -852,7 +878,8 @@
         <div>
           <h4>Ontdek</h4>
           <a href="#collectie">Collectie</a>
-          <a href="#over-ons">Ons verhaal</a>
+          <a href="#producten">Juwelen</a>
+        <a href="#over-ons">Ons verhaal</a>
           <a href="#galerij">Galerij</a>
           <a href="#bezoek">Contact</a>
         </div>
@@ -902,6 +929,35 @@
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+    const products = [{"name": "Gouden ronde en driehoekige oorstekers", "category": "Oorbellen", "image": "images/oorstekers-goud.webp"}, {"name": "Gouden ring met zwarte edelsteen", "category": "Ringen", "image": "images/ring-zwarte-edelsteen.webp"}, {"name": "Gouden oorbellen met zwarte edelstenen", "category": "Oorbellen", "image": "images/oorbellen-zwarte-edelstenen.webp"}, {"name": "Gouden dubbele cuffarmband", "category": "Armbanden", "image": "images/cuffarmband-goud.webp"}, {"name": "Zilveren ring met gouden accenten", "category": "Ringen", "image": "images/ring-zilver-goud.webp"}, {"name": "Matgouden ring met zwarte bol", "category": "Ringen", "image": "images/ring-zwarte-bol.webp"}, {"name": "Matgouden hanger", "category": "Kettingen", "image": "images/hanger-matgoud.webp"}, {"name": "Verweven ring van zilver en goud", "category": "Ringen", "image": "images/ring-verweven.webp"}];
+    const productGrid = document.getElementById('productGrid');
+    const filters = document.getElementById('productFilters');
+    const productDialog = document.getElementById('productDialog');
+    let selectedCategory = 'Alles';
+    ['Alles','Ringen','Kettingen','Oorbellen','Armbanden'].forEach(category => {
+      const button = document.createElement('button'); button.type='button'; button.className='product-filter'; button.textContent=category;
+      button.addEventListener('click',()=>{selectedCategory=category;renderProducts();}); filters.appendChild(button);
+    });
+    function renderProducts(){
+      productGrid.replaceChildren();
+      [...filters.children].forEach(b=>b.classList.toggle('active',b.textContent===selectedCategory));
+      products.filter(p=>selectedCategory==='Alles'||p.category===selectedCategory).forEach(p=>{
+        const card=document.createElement('button'); card.type='button'; card.className='product-card';
+        const img=document.createElement('img'); img.src=p.image; img.alt=p.name; img.loading='lazy';
+        const title=document.createElement('h3'); title.textContent=p.name;
+        const note=document.createElement('p'); note.textContent='Prijs op aanvraag';
+        card.append(img,title,note);card.addEventListener('click',()=>{
+          document.getElementById('detailImage').src=p.image;
+          document.getElementById('detailImage').alt=p.name;
+          document.getElementById('detailTitle').textContent=p.name;
+          productDialog.showModal();
+        });productGrid.appendChild(card);
+      });
+    }
+    document.getElementById('closeProduct').addEventListener('click',()=>productDialog.close());
+    productDialog.addEventListener('click',e=>{if(e.target===productDialog)productDialog.close();});
+    renderProducts();
   </script>
 </body>
 </html>
